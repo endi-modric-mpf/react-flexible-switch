@@ -6,7 +6,6 @@ Easy and Flexible React switches with support for custom styles.
 
 ![switch](https://cloud.githubusercontent.com/assets/270688/14726482/870deed8-07d7-11e6-9c78-be337a1159f0.gif)
 
-Live demo: [http://nettofarah.github.io/react-flexible-switch](http://nettofarah.github.io/react-flexible-switch/)
 To build the examples locally, run:
 
 ```bash
@@ -24,7 +23,7 @@ The easiest way to use react-switch is to install it from NPM and include it in 
 You can also use the standalone build by including `dist/react-switch.js` in your page. If you use this, make sure you have already included React, and it is available as a global variable.
 
 ```
-npm install react-flexible-switch --save
+npm install mpui-react-flexible-switch --save
 ```
 
 
@@ -33,7 +32,7 @@ npm install react-flexible-switch --save
 Just require 'react-flexible-switch' in your app and include it in your components.
 
 ```javascript
-const Switch = require('react-flexible-switch');
+import Switch from 'react-flexible-switch';
 <Switch />
 ```
 
@@ -59,7 +58,11 @@ Switch.propTypes = {
   onChange: React.PropTypes.func,
 
   switchStyles: React.PropTypes.shape({
-    width: React.PropTypes.number
+    width: React.PropTypes.number,
+    fontSize: PropTypes.number,
+    color: PropTypes.string,
+    onColor: PropTypes.string,
+    offColor: PropTypes.string
   })
 };
 ```
