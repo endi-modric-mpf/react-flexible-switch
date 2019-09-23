@@ -103,7 +103,10 @@ class Switch extends React.Component {
 
   switchStyles() {
     const switchStyles = this.switchStylesProps()
-    return merge({ borderRadius: switchStyles.width / 2 }, switchStyles)
+    return merge({ borderRadius: switchStyles.width / 2 }, switchStyles, this.switchBackgroundStyle(),
+    {
+      cursor: this.props.locked ? 'no-drop' : 'default'
+    });
   }
 
   translationStyle() {
@@ -128,6 +131,17 @@ class Switch extends React.Component {
       ? circleStyles.onColor
       : circleStyles.offColor
     return { backgroundColor }
+  }
+
+  switchBackgroundStyle(){
+    const switchStyles = this.switchStylesProps();
+    const backgroundColor = this.state.value
+    ? switchStyles.onColor
+    : switchStyles.offColor
+    const borderColor = this.state.value
+    ? switchStyles.onColor
+    : switchStyles.offColor
+  return { backgroundColor, borderColor }
   }
 
   circleStylesProps() {
@@ -167,6 +181,7 @@ class Switch extends React.Component {
         <Label
           active={this.state.value}
           labels={this.props.labels}
+          width={`calc(100% - ${this.props.circleStyles.diameter}px)`}
           ref="label"
         />
         <span
@@ -188,22 +203,25 @@ class Switch extends React.Component {
 }
 
 const defaultSwitchStyles = {
-  width: 80,
-  padding: 4,
-  border: '1px solid #CFCFCF',
+  width: 40,
+  padding: 1,
+  border: '1px solid',
   display: 'flex',
   position: 'relative',
-  backgroundColor: 'white',
-  boxSizing: 'content-box'
+  boxSizing: 'content-box',
+  color: '#fff',
+  fontSize: '12px',
+  onColor: '#0fb44b',
+  offColor: '#ccc'
 }
 
 const defaultCircleStyles = {
-  diameter: 35,
+  diameter: 18,
   borderRadius: 35,
   display: 'block',
   transition: 'transform 200ms, width 200ms, background-color 200ms',
-  onColor: '#70D600',
-  offColor: '#CFCFCF'
+  onColor: '#fff',
+  offColor: '#fff'
 }
 
 const hiddenButtonStyles = {
@@ -237,8 +255,13 @@ Switch.propTypes = {
   onChange: PropTypes.func,
 
   switchStyles: PropTypes.shape({
-    width: PropTypes.number
-  })
+    width: PropTypes.number,
+    fontSize: PropTypes.number,
+    color: PropTypes.string,
+    onColor: PropTypes.string,
+    offColor: PropTypes.string
+  }),
+ 
 }
 
 Switch.defaultProps = {
@@ -246,7 +269,7 @@ Switch.defaultProps = {
   circleStyles: defaultCircleStyles,
   switchStyles: defaultSwitchStyles,
   labels: { on: '', off: '' },
-  locked: false
+  locked: false,
 }
 
 export default Switch

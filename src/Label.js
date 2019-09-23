@@ -4,14 +4,22 @@ import PropTypes from 'prop-types'
 
 export default class Label extends PureComponent {
   styles() {
-    const offset = this.props.active ? { left: '20% ' } : { right: '20%' }
-
+    const offset = this.props.active ? { left: '0px' } : { right: '0px' }
+    console.log('this.props', this.props);
     return merge(
       {
         position: 'absolute',
-        top: '50%',
-        transform: 'translateY(-50%)',
-        pointerEvents: 'none'
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%',
+        pointerEvents: 'none',
+        fontSize: '1em',
+        lineHeight: '1em',
+        textAlign: 'center'
+      },
+      {
+        width: this.props.width
       },
       offset
     )
@@ -31,5 +39,6 @@ Label.propTypes = {
   labels: PropTypes.shape({
     on: PropTypes.string.isRequired,
     off: PropTypes.string.isRequired
-  }).isRequired
+  }).isRequired,
+  width: PropTypes.string
 }

@@ -21,7 +21,7 @@ class App extends React.Component {
         <Switch circleStyles={{ onColor: 'blue', offColor: 'red' }} />
 
         <h2> Custom Diameter </h2>
-        <Switch circleStyles={{ diameter: 55 }} />
+        <Switch circleStyles={{ diameter: 55 }} switchStyles={{ width: 200 }}/>
         <br />
         <Switch circleStyles={{ diameter: 20 }} />
 

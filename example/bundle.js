@@ -8159,10 +8159,21 @@ var Switch = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement('span', { style: this.switchStyles(),
+      return _react2.default.createElement('span', {
+        style: this.switchStyles(),
         className: this.classes(),
         ref: 'switch',
-        onMouseLeave: this.onMouseLeave }, _react2.default.createElement(_Label2.default, { active: this.state.value, labels: this.props.labels, ref: 'label' }), _react2.default.createElement('span', { style: this.circleStyles(), className: 'react-flexible-switch-circle', ref: 'circle' }), _react2.default.createElement('button', {
+        onMouseLeave: this.onMouseLeave
+      }, _react2.default.createElement(_Label2.default, {
+        active: this.state.value,
+        labels: this.props.labels,
+        width: 'calc(100% - ' + this.props.circleStyles.diameter + ')',
+        ref: 'label'
+      }), _react2.default.createElement('span', {
+        style: this.circleStyles(),
+        className: 'react-flexible-switch-circle',
+        ref: 'circle'
+      }), _react2.default.createElement('button', {
         disabled: this.props.locked,
         onClick: this.onActivateButton,
         style: hiddenButtonStyles,
@@ -8176,22 +8187,24 @@ var Switch = function (_React$Component) {
 }(_react2.default.Component);
 
 var defaultSwitchStyles = {
-  width: 80,
-  padding: 4,
-  border: '1px solid #CFCFCF',
+  width: 40,
+  padding: 1,
+  border: '1px solid #0fb44b',
   display: 'flex',
   position: 'relative',
-  backgroundColor: 'white',
-  boxSizing: 'content-box'
+  backgroundColor: '#0fb44b',
+  boxSizing: 'content-box',
+  color: '#fff',
+  fontSize: '12px'
 };
 
 var defaultCircleStyles = {
-  diameter: 35,
+  diameter: 18,
   borderRadius: 35,
   display: 'block',
   transition: 'transform 200ms, width 200ms, background-color 200ms',
-  onColor: '#70D600',
-  offColor: '#CFCFCF'
+  onColor: '#fff',
+  offColor: '#fff'
 };
 
 var hiddenButtonStyles = {
@@ -8225,7 +8238,9 @@ Switch.propTypes = {
   onChange: _propTypes2.default.func,
 
   switchStyles: _propTypes2.default.shape({
-    width: _propTypes2.default.number
+    width: _propTypes2.default.number,
+    fontSize: _propTypes2.default.number,
+    color: _propTypes2.default.string
   })
 };
 
@@ -8371,8 +8386,11 @@ var Label = function (_PureComponent) {
         position: 'absolute',
         top: '50%',
         transform: 'translateY(-50%)',
-        pointerEvents: 'none'
-      }, offset);
+        pointerEvents: 'none',
+        fontSize: '1em',
+        lineHeight: '1em',
+        textAlign: 'center'
+      }, this.props.width);
     }
   }, {
     key: 'render',
@@ -8391,7 +8409,8 @@ Label.propTypes = {
   labels: _propTypes2.default.shape({
     on: _propTypes2.default.string.isRequired,
     off: _propTypes2.default.string.isRequired
-  }).isRequired
+  }).isRequired,
+  width: _propTypes2.default.string
 };
 
 /***/ }),
